@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sénégal 2025 : Le Paradoxe du PIB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 20px;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #00a86b 0%, #008f5a 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            opacity: 0.95;
+        }
+        
+        .main-stat {
+            background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+            padding: 40px;
+            text-align: center;
+            border-bottom: 5px solid #e6c200;
+        }
+        
+        .main-stat h2 {
+            font-size: 4em;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        
+        .main-stat p {
+            font-size: 1.3em;
+            color: #2a5298;
+            font-weight: 600;
+        }
+        
+        .formula-section {
+            padding: 40px;
+            background: #f8f9fa;
+        }
+        
+        .formula-box {
+            background: white;
+            border: 3px solid #00a86b;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .formula {
+            font-size: 2em;
+            font-weight: bold;
+            color: #1e3c72;
+            margin: 20px 0;
+        }
+        
+        .formula-highlight {
+            color: #00a86b;
+            background: #e8f5e9;
+            padding: 5px 15px;
+            border-radius: 8px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 40px;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        
+        .card-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .card-icon {
+            font-size: 2.5em;
+            margin-right: 15px;
+        }
+        
+        .card-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        .price-change {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .price-old {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 1.1em;
+        }
+        
+        .price-new {
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        
+        .price-down {
+            color: #00a86b;
+        }
+        
+        .price-up {
+            color: #dc3545;
+        }
+        
+        .arrow {
+            font-size: 2em;
+        }
+        
+        .arrow-down {
+            color: #00a86b;
+        }
+        
+        .arrow-up {
+            color: #dc3545;
+        }
+        
+        .section {
+            padding: 40px;
+        }
+        
+        .section-title {
+            font-size: 2em;
+            color: #1e3c72;
+            margin-bottom: 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #00a86b;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .comparison-box {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .comparison-good {
+            background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+            border: 3px solid #00a86b;
+        }
+        
+        .comparison-bad {
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            border: 3px solid #dc3545;
+        }
+        
+        .comparison-number {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .timeline-year {
+            background: #00a86b;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            min-width: 100px;
+            text-align: center;
+            margin-right: 30px;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #00a86b;
+        }
+        
+        .footer {
+            background: #1e3c72;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            font-size: 1.2em;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .main-stat h2 {
+                font-size: 2.5em;
+            }
+            
+            .comparison {
+                grid-template-columns: 1fr;
+            }
+            
+            .formula {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🇸🇳 SÉNÉGAL 2025</h1>
+            <p>Le Paradoxe du PIB : Quand les chiffres explosent mais le quotidien stagne</p>
+        </div>
+        
+        <!-- Main Stat -->
+        <div class="main-stat">
+            <h2>+10,1%</h2>
+            <p>Croissance du PIB en 2025 - Une explosion historique</p>
+        </div>
+        
+        <!-- Formula Section -->
+        <div class="formula-section">
+            <div class="formula-box">
+                <h3 style="color: #1e3c72; margin-bottom: 20px;">La Formule du PIB</h3>
+                <div class="formula">
+                    PIB = C + I + G + (<span class="formula-highlight">X</span> - M)
+                </div>
+                <p style="margin-top: 20px; font-size: 1.1em; color: #666;">
+                    C'est le <strong style="color: #00a86b;">X (Exportations)</strong> qui tire tout vers le haut grâce au pétrole et au gaz
+                </p>
+            </div>
+        </div>
+        
+        <!-- Price Changes -->
+        <div class="section" style="background: #f8f9fa;">
+            <h2 class="section-title">💰 Ce qui a changé dans votre portefeuille</h2>
+            
+            <div class="grid">
+                <!-- Riz -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🍚</div>
+                        <div class="card-title">Riz</div>
+                    </div>
+                    <div class="price-change">
+                        <div>
+                            <div class="price-old">410 FCFA</div>
+                            <div class="price-new price-down">350 FCFA</div>
+                        </div>
+                        <div class="arrow arrow-down">↓</div>
+                    </div>
+                    <p style="color: #00a86b; font-weight: 600;">-60 FCFA/kg</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Annonce : 300 FCFA début 2026</p>
+                </div>
+                
+                <!-- Pain -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🥖</div>
+                        <div class="card-title">Pain</div>
+                    </div>
+                    <div class="price-change">
+                        <div>
+                            <div class="price-old">165 FCFA</div>
+                            <div class="price-new price-down">150 FCFA</div>
+                        </div>
+                        <div class="arrow arrow-down">↓</div>
+                    </div>
+                    <p style="color: #00a86b; font-weight: 600;">-15 FCFA</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Baguette de 190g</p>
+                </div>
+                
+                <!-- Électricité -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">⚡</div>
+                        <div class="card-title">Électricité</div>
+                    </div>
+                    <div class="price-change">
+                        <div>
+                            <div class="price-new price-up">117 FCFA</div>
+                        </div>
+                        <div class="arrow arrow-up">→</div>
+                    </div>
+                    <p style="color: #dc3545; font-weight: 600;">Toujours élevé</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Le kWh reste cher</p>
+                </div>
+                
+                <!-- Huile -->
+                <div class="card">
+                    <div class="card-header">
+                        <div class="card-icon">🫒</div>
+                        <div class="card-title">Huile</div>
+                    </div>
+                    <div class="price-change">
+                        <div>
+                            <div class="price-new price-down">Prix en baisse</div>
+                        </div>
+                        <div class="arrow arrow-down">↓</div>
+                    </div>
+                    <p style="color: #00a86b; font-weight: 600;">-100 FCFA/litre</p>
+                    <p style="margin-top: 10px; font-size: 0.9em; color: #666;">Grâce aux subventions</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- The Gap -->
+        <div class="section">
+            <h2 class="section-title">🔍 Le Décalage Expliqué</h2>
+            
+            <div class="comparison">
+                <div class="comparison-box comparison-good">
+                    <div style="font-size: 4em;">📈</div>
+                    <h3 style="color: #00a86b; margin: 20px 0;">PIB : +10,1%</h3>
+                    <p style="font-size: 1.1em;">Grâce aux exportations pétrolières (X)</p>
+                </div>
+                
+                <div class="comparison-box comparison-bad">
+                    <div style="font-size: 4em;">😔</div>
+                    <h3 style="color: #dc3545; margin: 20px 0;">Pouvoir d'achat</h3>
+                    <p style="font-size: 1.1em;">L'électricité plombe le budget des ménages (C)</p>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 40px;">
+                <h3 style="color: #1e3c72; margin-bottom: 15px;">⚠️ Le Problème Central</h3>
+                <p style="font-size: 1.1em; line-height: 1.6;">
+                    L'État doit <strong>178,8 milliards FCFA</strong> à la SENELEC pour maintenir les tarifs d'électricité bas. 
+                    Les subventions fonctionnent pour le riz et le pain, mais l'électricité reste le grand défi.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Employment Scandal -->
+        <div class="section" style="background: #f8f9fa;">
+            <h2 class="section-title">👥 Le Scandale de l'Emploi</h2>
+            
+            <div class="comparison">
+                <div class="comparison-box" style="background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); border: 3px solid #2196f3;">
+                    <div style="font-size: 4em;">🌾</div>
+                    <h3 style="color: #1e3c72; margin: 20px 0;">Agriculture</h3>
+                    <div class="comparison-number" style="color: #2196f3;">3,5M</div>
+                    <p style="font-size: 1.1em;">emplois directs</p>
+                </div>
+                
+                <div class="comparison-box" style="background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%); border: 3px solid #ff9800;">
+                    <div style="font-size: 4em;">🛢️</div>
+                    <h3 style="color: #1e3c72; margin: 20px 0;">Pétrole & Gaz</h3>
+                    <div class="comparison-number" style="color: #ff9800;">3 000</div>
+                    <p style="font-size: 1.1em;">emplois directs</p>
+                </div>
+            </div>
+            
+            <p style="text-align: center; font-size: 1.2em; margin-top: 30px; color: #666;">
+                Le pétrole crée beaucoup de <strong>valeur ajoutée</strong> (PIB), mais très peu d'<strong>emplois</strong>
+            </p>
+        </div>
+        
+        <!-- Timeline -->
+        <div class="section">
+            <h2 class="section-title">📅 La Timeline du Gas-to-Power</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">État actuel</h4>
+                        <p>Électricité à <strong>117 FCFA/kWh</strong></p>
+                        <p>Dette de compensation : <strong>178,8 milliards FCFA</strong></p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Jan 2026</div>
+                    <div class="timeline-content">
+                        <h4 style="color: #00a86b; margin-bottom: 10px;">Baisse annoncée</h4>
+                        <p>Réduction de <strong>10%</strong> des tarifs (mesure conjoncturelle)</p>
+                        <p>Électricité passera à environ <strong>105 FCFA/kWh</strong></p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2028-2029</div>
+                    <div class="timeline-content">
+                        <h4 style="color: #1e3c72; margin-bottom: 10px;">Transformation structurelle</h4>
+                        <p>Objectif : <strong>60 FCFA/kWh</strong></p>
+                        <p>Gas-to-Power pleinement opérationnel</p>
+                        <p>Économie de <strong>87 600 FCFA/an</strong> par ménage</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Key Takeaways -->
+        <div class="section" style="background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);">
+            <h2 class="section-title">💡 Les 3 Points Clés à Retenir</h2>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3 style="color: #00a86b; margin-bottom: 15px;">1️⃣ Le X explose</h3>
+                    <p style="line-height: 1.6;">
+                        Les exportations pétrolières (X) font grimper le PIB à 10,1%, 
+                        mais une grande partie des profits repart à l'étranger.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: #00a86b; margin-bottom: 15px;">2️⃣ Le C stagne</h3>
+                    <p style="line-height: 1.6;">
+                        Malgré les baisses du riz et du pain, l'électricité à 117 FCFA/kWh 
+                        dévore une partie croissante du budget des ménages.
+                    </p>
+                </div>
+                
+                <div class="card">
+                    <h3 style="color: #00a86b; margin-bottom: 15px;">3️⃣ Le G compense</h3>
+                    <p style="line-height: 1.6;">
+                        L'État injecte des milliards en subventions (G), mais crée une dette 
+                        de 178,8 milliards FCFA envers la SENELEC.
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <p style="font-size: 1.4em; font-weight: bold; margin-bottom: 15px;">
+                📊 Le PIB mesure la production, pas le bien-être
+            </p>
+            <p style="opacity: 0.9;">
+                Sans redistribution rapide et sans baisse de l'énergie, 
+                la croissance reste un chiffre sur le papier.
+            </p>
+        </div>
+    </div>
+</body>
+</html>
